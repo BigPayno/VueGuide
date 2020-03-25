@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p> Male </p>
+			<ol>
+				<li v-for="item in list">
+					{{item.text}}
+				</li>
+			</ol>
+		</div>
+		<script type="text/javascript">
+			var vue=new Vue({
+				el: '#app',
+				data: {
+					list: [
+						{ text:"Hero" },
+						{ text:"Warrior" },
+						{ text:"Magician" },
+						{ text:"Lover" },
+						{ text:"King"}
+					]
+				}
+			})
+		</script>
+	</body>
+</html>
