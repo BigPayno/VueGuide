@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<todo-item></todo-item>
+			</ul>
+			<ol>
+				<my-item v-for="item in list" v-bind:data="item" v-bind:key="item.id"></my-item>
+			</ol>
+		</div>
+	
+		<script type="text/javascript">
+			Vue.component('todo-item', {
+				template: '<li>这是个待办项</li>'
+			})
+			
+			Vue.component('my-item',{
+				props:['data'],
+				template: '<li>{{data.text}}</li>'
+			})
+			
+			var vue=new Vue({
+				el: '#app',
+				data:{
+					list :[
+						{id:0,text:"Java"},
+						{id:1,text:"Python"},
+						{id:2,text:"Scala"},
+						{id:3,text:"Kotlin"}
+					]
+				}
+			})
+			//该Vue绑定的是#app，所以外部使用component会失效
+		</script>
+	</body>
+</html>
