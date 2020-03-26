@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div>
+			<p><span>{{val}}</span></p>
+			<p><span v-once> v-once只渲染一次final {{ val1 }}</span></p>
+			<p>v-html渲染内部 <span v-html="val2"></span></p>
+			
+			<p>注意，vue实例只绑定第一个满足选择器的组件，如果绑定div，那么只会绑定第一个div，后面的无法绑定</p>
+		</div>
+		<script type="text/javascript">
+			var vue=new Vue({
+				el: 'div',
+				data: {
+					val : "hello",
+					val1 : "payno",
+					val2 : "dean"
+				}
+			})
+		</script>
+	</body>
+</html>

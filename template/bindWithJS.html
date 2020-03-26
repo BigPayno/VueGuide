@@ -7,19 +7,17 @@
 	</head>
 	<body>
 		<div id="app">
-		  <p>{{ message }}</p>
-		  <button v-on:click="reverseMessage">反转消息</button>
+			<span>{{ msg.split(',').reverse().join(' ') }}</span>
+			<p>{{num+1}}</p>
+			<p>{{ok?'m':'f'}}</p>
 		</div>
 		<script type="text/javascript">
 			var vue=new Vue({
 				el: '#app',
 				data: {
-					message: "Hello My Warrior,v-on监听DOM事件"
-				},
-				methods:{
-					reverseMessage: function(){
-						this.message=this.message.split(' ').reverse().join(' ')
-					}
+					msg: "king,warrior,lover,magician",
+					num: 7,
+					ok: true
 				}
 			})
 		</script>
