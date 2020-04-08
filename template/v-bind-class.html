@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app" :class="classObject">
+			<p>hello</p>
+		</div>
+		<script type="text/javascript">
+			var vue=new Vue({
+				el: '#app',
+				data: {
+				  isActive: true,
+				  error: null
+				},
+				computed: {
+				  classObject: function () {
+				    return {
+				      active: this.isActive && !this.error,
+				      'text-danger': this.error && this.error.type === 'fatal'
+				    }
+				  }
+				}
+			})
+		</script>
+	</body>
+</html>
