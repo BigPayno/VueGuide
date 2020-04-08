@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{ msg }}</p>
+			<p>msg change times : {{ changeTimes }}</p>
+			<input v-model="msg">
+		</div>
+		<script type="text/javascript">
+			var vue=new Vue({
+				el: '#app',
+				data: {
+					msg:"data",
+					changeTimes:0
+				},
+				watch:{
+					msg:function(){
+						this.changeTimes++
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

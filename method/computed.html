@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{ firstName }}</p>
+			<input v-model="firstName">
+			<p>{{ lastName }}</p>
+			<input v-model="lastName">
+			<p>{{ fullName }}</p>
+		</div>
+		<script type="text/javascript">
+			var vue=new Vue({
+				el: '#app',
+				data: {
+					firstName:"Payno",
+					lastName:"X"
+				},
+				computed:{
+					fullName:function(){
+						return this.firstName+' '+this.lastName
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
