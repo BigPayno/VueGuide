@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<ol v-for="item in list">{{item}}</ol>
+			</ul>
+			<ul>
+				<ol v-for="(item,index) of list">
+					{{parent}}-{{index+1}}-{{item}}
+				</ol>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var vue=new Vue({
+				el: '#app',
+				data: {
+					parent:"P",
+					list:["Payno","Chad"]
+				}
+			})
+		</script>
+	</body>
+</html>

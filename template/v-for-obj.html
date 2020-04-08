@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<ol v-for="item of me">{{item}}</il>
+			</ul>
+			
+			<ul>
+				<ol v-for="(val,key) of me">{{key}} : {{val}}</ol>
+			</ul>
+			
+			<ul>
+				<ol v-for="(val,key,index) in me">ITEM-{{index}} {{key}}-{{val}}</ol>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var vue=new Vue({
+				el: '#app',
+				data: {
+					me:{
+						name:"payno",
+						gender:"male"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
