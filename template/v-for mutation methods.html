@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ol v-for="item in list">{{item}}</ol>
+			<p>
+				在控制台输入变异方法可以动态更改list
+				vue可以动态更新视图
+				如果使用非变异方法，则会重新渲染视图
+				由于缓存（猜测）机制，比完整重新刷新更高效
+				变异方法
+				    push() 尾部增加
+				    pop() 尾部删除
+				    shift() 头部删除 
+				    unshift() 头部增加
+				    splice() 从某处开始删除
+				    sort()
+				    reverse()
+				非变异方法
+					filter()、concat() 和 slice()
+			</p>
+		</div>
+		<script type="text/javascript">
+			var vue=new Vue({
+				el: '#app',
+				data: {
+					list:[1,2,3]
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<li v-for="todo in todos" v-if="todo.isComplete">
+			  {{ todo.v}}
+			</li>
+			
+			<ul v-if="todos.length>5">
+			  <li v-for="todo in todos">
+			    {{ todo.v }}
+			  </li>
+			</ul>
+			<p v-else>No todos left!</p>
+			
+		</div>
+		<script type="text/javascript">
+			var vue=new Vue({
+				el: '#app',
+				data: {
+					todos:[
+						{v:1,isComplete:false},
+						{v:2,isComplete:false},
+						{v:3,isComplete:true},
+						{v:4,isComplete:false}]
+				}
+			})
+		</script>
+	</body>
+</html>
