@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue-router/dist/vue-router.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h5>如果在组件中使用$route,会导致组件和route耦合,所以采用props传参</h5>
+			<p>{{ route }}</p>
+			<input v-model="route">
+			<button v-on:click="routeTo">进入路由</button>
+			<button v-on:click="routeGo">后退一步</button>
+			<router-view></router-view>
+		</div>
+		
+		<script>
+			const User = { 
+				template: '<div>User {{id}}</div>' ,
+				props: ['id']
+			}
+			
+			/*
+				路由的props支持三种模式
+				布尔模式、对象模式、函数模式
+			*/
+			const router = new VueRouter({
+				routes:[
+					{
+						path: '/user/:id',
+						component: User,
+						props: true
+					}
+				]
+			})
+			const app = new Vue({
+				data:{
+					route:'/user/a'
+				},
+				methods:{
+					routeTo:function(){
+						router.push(this.route)
+					},
+					routeGo:function(){
+						router.go(-1)
+					}
+				},
+				router
+			}).$mount('#app')
+		</script>
+	</body>
+</html>

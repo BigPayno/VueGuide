@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue-router/dist/vue-router.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h5>router.go(n)</h5>
+			<h5>会向路由历史记录历史后退n步</h5>
+			<p>{{ route }}</p>
+			<input v-model="route">
+			<button v-on:click="routeTo">进入路由</button>
+			<button v-on:click="routeGo">后退一步</button>
+			<router-view></router-view>
+		</div>
+		
+		<script>
+			const User = { 
+				template: '<div>User</div>' ,
+				props:['id']
+			}
+		
+			const router = new VueRouter({
+				routes:[
+					{
+						path: '/user/:id',
+						component: User,
+						props:true,
+						meta:{
+							requiresAuth:true
+						}
+					},{
+						path: '/error',
+						component:{
+							template:`<p>U don't have the premisson!</p>`
+						}
+					}
+				]
+			})
+			
+			router.beforeEach((to,from,next)=>{
+				if(to.matched.some(record=>record.meta.requiresAuth)){
+					if(to.params.id=='admin'){
+						next()
+					}else{
+						next('/error')
+					}
+				}else{
+					next()
+				}
+			})
+			
+			const app = new Vue({
+				data:{
+					route:'/user/a'
+				},
+				methods:{
+					routeTo:function(){
+						router.push(this.route)
+					},
+					routeGo:function(){
+						router.go(-1)
+					}
+				},
+				router
+			}).$mount('#app')
+		</script>
+	</body>
+</html>

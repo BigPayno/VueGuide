@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue-router/dist/vue-router.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+		  <h1>{{localRoute}}</h1>
+		  <p>
+		    <router-link to="/a">Go to a</router-link>
+			<router-link to="/b">redirect to b</router-link>
+		  </p>
+		  
+		  <p>“重定向”的意思是，当用户访问 /a时，URL 将会被替换成 /b，然后匹配路由为 /b，那么“别名”又是什么呢？
+
+/a 的别名是 /b，意味着，当用户访问 /b 时，URL 会保持为 /b，但是路由匹配则为 /a，就像用户访问 /a 一样。</p>
+		  <router-view></router-view>
+		</div>
+		
+		<script>
+			const User = { 
+				template: '<div>User {{$route.params.id}}</div>' ,
+			}
+		
+			const routes = [
+			  { path: '/a', redirect: '/b' }
+			]
+			
+			const router = new VueRouter({
+					routes 
+			})
+			
+			const app = new Vue({
+				data:{
+					localRoute: ''
+				},
+				router
+			}).$mount('#app')
+		</script>
+	</body>
+</html>

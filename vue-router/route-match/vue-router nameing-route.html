@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue-router/dist/vue-router.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>route-path:{{ route }}</p>
+			<p>route-name {{ name }}</p>
+			<input v-model="route">
+			<input v-model="name">
+			<button v-on:click="routeTo">进入路由</button>
+			<router-view></router-view>
+		</div>
+		
+		<script>
+			const User = { 
+				template: '<div>User {{$route.params.id}}</div>' ,
+			}
+		
+			
+			const router = new VueRouter({
+				routes:[
+					{
+						path: '/user/:id',
+						name: 'payno',
+						component: User 
+					}
+				]
+			})
+			
+			const app = new Vue({
+				data:{
+					route:'/user/a',
+					name: ''
+				},
+				methods:{
+					routeTo:function(){
+						router.push({
+							name:this.name,
+							params:{
+								id:this.route
+							}
+						})
+					}
+				},
+				router
+			}).$mount('#app')
+		</script>
+	</body>
+</html>

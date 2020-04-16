@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue-router/dist/vue-router.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+		  <h1>Hello App!</h1>
+		  <p>
+		    <router-link to="/settings/email">email</router-link>
+			<router-link to="/settings/profile">profile</router-link>
+		  </p>
+		  <router-view></router-view>
+		</div>
+		
+		<script>
+			/*
+				/settings/emails                                /settings/profile
+				+-----------------------------------+           +------------------------------+
+				| UserSettings                      |           | UserSettings                 |
+				| +-----+-------------------------+ |           | +-----+--------------------+ |
+				| |   UserEmailsSubscriptions     | |  +----->  | |      UserProfile         | |
+				| |-------------------------------+ |           | |--------------------------+ |
+				| |                               | |           | |   UserProfilePreview     | |
+				| +-----+-------------------------+ |           | +-----+--------------------+ |
+				+-----------------------------------+           +------------------------------+
+			*/
+			const Settings = { 
+				template: `<div> 
+								<p>Settings</p>
+								<router-view/>
+								<router-view name="details"></router-view>
+						  </div>` 
+			}
+			
+			const email = {
+				template:"<p>email</p>"
+			}
+			
+			const profile = {
+				template:"<p>profile</p>"
+			}
+			
+			const profilePreview = {
+				template:"<p>profilePreview</p>"
+			}
+		
+			const routes = [{ 
+				path: '/settings', 
+				component: Settings ,
+				children:[
+					{
+						path: 'email',
+						component: email
+					},{
+						path: 'profile',
+						components:{
+							default: profile,
+							details: profilePreview
+						}
+					},
+				]
+			}]
+			
+			const router = new VueRouter({
+					routes 
+				})
+			
+			const app = new Vue({
+					router
+				}).$mount('#app')
+		</script>
+	</body>
+</html>

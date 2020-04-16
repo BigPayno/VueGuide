@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/vue-router/dist/vue-router.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h5>router.replace(location, onComplete?, onAbort?)</h5>
+			<h5>不会向路由历史记录历史推</h5>
+			<p>{{ route }}</p>
+			<input v-model="route">
+			<button v-on:click="routeTo">进入路由</button>
+			<button v-on:click="alertRouteHistory">历史路由</button>
+			<router-view></router-view>
+		</div>
+		
+		<script>
+			const User = { 
+				template: '<div>User {{$route.params.id}}</div>' ,
+			}
+		
+			
+			const router = new VueRouter({
+				routes:[
+					{
+						path: '/user/:id',
+						component: User 
+					}
+				]
+			})
+			
+			const app = new Vue({
+				data:{
+					route:'/user/a'
+				},
+				methods:{
+					routeTo:function(){
+						router.replace(this.route)
+					},
+					alertRouteHistory:function(){
+						alert(router.history)
+					}
+				},
+				router
+			}).$mount('#app')
+		</script>
+	</body>
+</html>
