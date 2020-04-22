@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p ref='p'> Thunder </p>
+			<thunder ref='thunder'></thunder>
+		</div>
+		<script type="text/javascript">
+			/* 
+				1.created
+				2. v-if v-show 之后
+			 
+			 */
+			
+			Vue.component('thunder', {
+				template: '<li>ImagineDragons</li>',
+				methods: {
+					hello : function(){
+						alert('hello');
+					}
+				}
+			})
+			
+			var vue=new Vue({
+				el: '#app',
+				data: {
+
+				},
+				methods:{
+					test1 : function (){
+						//获取Dom元素
+						alert(this.$refs.p.innerText);
+						//获取Dom元素并修改样式
+						setTimeout(()=>{
+							this.$refs.p.style.color = 'red';
+						},1000);
+					},
+					test2 : function(){
+						//获取组件
+						console.log(this.$refs.thunder);
+						this.$refs.thunder.hello();
+					}
+				}
+			});
+			
+			vue.test1();
+			vue.test2();
+		</script>
+	</body>
+</html>
