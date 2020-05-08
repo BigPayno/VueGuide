@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+		</div>
+		<script type="text/javascript">
+			var mixin = {
+				created:function(){
+					this.startMixin();
+				},
+				methods:{
+					startMixin:function(){
+						alert('mixin call');
+					}
+				}
+			};
+			
+			var Component = Vue.extend({
+				mixins:[mixin],
+				created:function(){
+					alert('component call');
+				}
+			});
+			
+			var component = new Component();
+		</script>
+	</body>
+</html>

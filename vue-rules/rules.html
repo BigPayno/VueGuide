@@ -25,6 +25,11 @@
 						]
 					}
 				},
+				/* 
+				 /^(?=.*[A-Za-z])(?=.*[_])(?=.*\d)[A-Za-z\d_]{8,18}$/
+				 /^{}$/
+				 ?=.*[] 
+				 */
 				methods:{
 					refresh:function check(){
 						this.$refs.updateForm.validate(valid=>{
